@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MobileMart - Your Phone Store</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+</head>
+<body>
+  <header>
+    <h1>MobileMart</h1>
+    <nav>
+      <button class="tab-btn active" data-tab="home">Home</button>
+      <button class="tab-btn" data-tab="products">Products</button>
+      <button class="tab-btn" data-tab="payment">Payment</button>
+      <button class="tab-btn" data-tab="account">Account</button>
+      <button class="cart-btn" id="cartBtn" aria-label="View Cart">
+        <span class="material-icons">shopping_cart</span>
+        <span id="cartCount">0</span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Home Tab -->
+  <section id="home" class="tab-section active">
+    <div class="container">
+      <h2>Welcome to MobileMart</h2>
+      <p>Your one-stop shop for Samsung, Oppo, Infinix, iPhone, Tecno & more! Quality phones at unbeatable prices.</p>
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search phones..." autocomplete="off" aria-label="Search phones" />
+      </div>
+      <div class="featured-products" id="featuredProducts" aria-live="polite" aria-atomic="true"></div>
+      <div class="cta-buttons">
+        <button class="cta-btn" data-tab="products">Shop Now</button>
+        <button class="cta-btn" data-tab="payment">Payment Options</button>
+      </div>
+      <div class="reviews-section">
+        <h3>What Our Customers Say</h3>
+        <div class="reviews" id="reviewsGrid"></div>
+      </div>
+      <div class="product-info">
+        <h3>Product Name</h3>
+        <p>$Price</p>
+        <div class="buttons">
+          <button class="add-cart-btn" data-id="PRODUCT_ID">Add to Cart</button>
+          <button class="pay-now-btn" data-id="PRODUCT_ID">Pay Now</button>
+        </div>
+      <div class="contact-info">
+        <p>Contact us: support@mobilemart.com | +254 700 123 456</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Tab -->
+  <section id="products" class="tab-section" style="display:none;">
+    <div class="container">
+      <h2>All Phones</h2>
+      <div class="products-section" id="productsList" aria-live="polite" aria-atomic="true"></div>
+    </div>
+  </section>
+
+  <!-- Payment Tab -->
+  <section id="payment" class="tab-section" style="display:none;">
+    <div class="container">
+      <h2>Payment Options</h2>
+      <div class="payment-container" role="region" aria-label="Payment method">
+        <img src="images/mpesa.jpg" alt="MPESA Logo" class="mpesa-logo" />
+        <p class="till-number">Till Number: <strong>7684647</strong></p>
+        <button class="pay-now-payment-btn" id="mpesaPayBtn">Pay Now</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="account" class="tab-section" style="display:none;">
+    <div class="container account-container">
+      <!-- User Header -->
+      <header class="account-header">
+        <label for="profileImageInput" class="profile-image-label" tabindex="0" aria-label="Upload profile image">
+          <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="User Avatar" id="userAvatar" class="user-avatar" />
+          <span class="upload-icon material-icons" title="Click to upload/change profile image">camera_alt</span>
+        </label>
+        <input type="file" id="profileImageInput" accept="image/*" style="display:none" />
+        <h2>Hi, <span id="userName">John Doe</span></h2>
+        <div class="account-actions">
+          <button class="btn settings-btn" aria-label="Settings"><span class="material-icons">settings</span></button>
+          <button class="btn logout-btn" id="logoutBtn" aria-label="Logout"><span class="material-icons">logout</span></button>
+        </div>
+      </header>
+  
+      <!-- Overview Cards -->
+      <div class="account-overview">
+        <div class="overview-card">
+          <h3>Total Orders</h3>
+          <p id="totalOrders">0</p>
+        </div>
+        <div class="overview-card">
+          <h3>Pending Orders</h3>
+          <p id="pendingOrders">0</p>
+        </div>
+        <div class="overview-card">
+          <h3>Last Order Date</h3>
+          <p id="lastOrderDate">-</p>
+        </div>
+        <div class="overview-card">
+          <h3>Cart Total</h3>
+          <p id="cartTotalAmount">$0.00</p>
+        </div>
+      </div>
+  
+      <!-- Recent Orders Table -->
+      <section class="recent-orders">
+        <h3>Recent Orders</h3>
+        <table class="orders-table" aria-label="List of recent orders">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Product</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="ordersTableBody">
+            <!-- Orders will be dynamically inserted here -->
+          </tbody>
+        </table>
+      </section>
+  
+      <!-- Quick Action Buttons -->
+      <div class="quick-actions">
+        <button class="btn edit-profile-btn">Edit Profile</button>
+        <button class="btn contact-support-btn">Contact Support</button>
+        <button class="btn pay-total-btn" id="payTotalBtn">Pay Total</button>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Sponsored By -->
+  <div class="sponsored">
+    <span>Sponsored by:</span>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg" alt="Samsung" class="brand-logo" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" class="brand-logo" />
+    <img src="/images/tecno.png" alt="Tecno" class="brand-logo" />
+    <img src="/images/infinix.png" alt="Infinix" class="brand-logo" />
+    <img src="/images/oppo.png" alt="Oppo" class="brand-logo" />
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 MobileMart. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
